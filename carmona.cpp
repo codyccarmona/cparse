@@ -74,11 +74,15 @@ struct ProductionRule{
         return rhs[index + 1];
     }
 
-    std::string productionString(){
+    std::string productionString(bool removeParserSymbol = false){
         std::string production = "";
         production += lhs;
         production += + "->";
         production += rhs;
+        if(removeParserSymbol){
+            auto index = indexOfParseSymbol() + 3;
+            production = production.substr(0, index) + production.substr(index + 1, production.size());
+        }
 
         return production;
     }
@@ -132,7 +136,7 @@ struct AugmentedGrammar{
         std::printf("Augmented Grammar\n");
         std::printf("-----------------\n");
         for(auto r : rules){
-            std::printf("%s\n", r.productionString().c_str());
+            std::printf("%s\n", r.productionString(true).c_str());
         }
         std::printf("\n");
     }

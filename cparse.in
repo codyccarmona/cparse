@@ -1,4 +1,7 @@
-S
-S –> XX
- X –> aX
-X –> b
+E
+E->E+T
+E->T
+T->T*F
+T->F
+F->(E)
+F->i
